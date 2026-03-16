@@ -1,6 +1,6 @@
 package com.github.zero9178.mlirods.lsp
 
-import com.github.zero9178.mlirods.settings.TableGenToolsApplicationSettings
+import com.github.zero9178.mlirods.settings.TableGenToolsProjectSettings
 import com.intellij.openapi.components.service
 import com.intellij.openapi.extensions.ExtensionPointName
 import com.intellij.openapi.project.Project
@@ -14,7 +14,7 @@ internal class TableGenLspServerSupportProvider : LspServerSupportProvider {
         file: VirtualFile,
         serverStarter: LspServerSupportProvider.LspServerStarter
     ) {
-        if (!service<TableGenToolsApplicationSettings>().lspEnabled) return
+        if (!project.service<TableGenToolsProjectSettings>().lspEnabled) return
 
         if (!file.isTableGenFile) return
 

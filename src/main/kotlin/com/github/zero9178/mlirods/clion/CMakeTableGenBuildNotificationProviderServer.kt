@@ -2,7 +2,7 @@ package com.github.zero9178.mlirods.clion
 
 import com.github.zero9178.mlirods.MyBundle
 import com.github.zero9178.mlirods.lsp.isTableGenFile
-import com.github.zero9178.mlirods.settings.TableGenToolsApplicationSettings
+import com.github.zero9178.mlirods.settings.TableGenToolsProjectSettings
 import com.intellij.openapi.application.readAction
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
@@ -35,7 +35,7 @@ class CMakeTableGenBuildNotificationProviderService(private val project: Project
 
     init {
         cs.launch {
-            service<TableGenToolsApplicationSettings>().lspEnabledFlow.filter { !it }.collect {
+            project.service<TableGenToolsProjectSettings>().lspEnabledFlow.filter { !it }.collect {
                 // Clear the notification anytime the LSP is turned off.
                 clearNotifications()
             }
@@ -105,7 +105,7 @@ private class CMakeTableGenBuildNotificationProvider : EditorNotificationProvide
         project: Project, file: VirtualFile
     ): Function<in FileEditor, out JComponent?>? {
         if (!file.isTableGenFile) return null
-        if (!service<TableGenToolsApplicationSettings>().lspEnabled) return null
+        if (!project.service<TableGenToolsProjectSettings>().lspEnabled) return null
 
         val service = project.service<CMakeTableGenBuildNotificationProviderService>()
         if (!service.shouldShowNotification) return null

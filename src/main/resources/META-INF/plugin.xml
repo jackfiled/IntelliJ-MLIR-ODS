@@ -90,12 +90,13 @@
         <codeInsight.lineMarkerProvider language="TableGen"
                                         implementationClass="com.github.zero9178.mlirods.language.linemarkers.TableGenDerivesClassLineMarkerProvider"/>
         <breadcrumbsInfoProvider implementation="com.github.zero9178.mlirods.language.TableGenBreadcrumbsProvider"/>
-        <applicationConfigurable
+        <projectConfigurable
                 parentId="tools"
-                instance="com.github.zero9178.mlirods.settings.TableGenToolsApplicationConfigurable"
-                id="com.github.zero9178.mlirods.settings.TableGenToolsApplicationConfigurable"
+                instance="com.github.zero9178.mlirods.settings.TableGenToolsProjectConfigurable"
+                id="com.github.zero9178.mlirods.settings.TableGenToolsProjectConfigurable"
                 key="tableGen.tools.displayName"
-                bundle="messages.MyBundle"/>
+                bundle="messages.MyBundle"
+        />
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij.platform.lsp">
